@@ -1,0 +1,50 @@
+## with open("freq.txt", "r", encoding ="utf-8") as file:
+##    for line in file:
+##       word = line.split("|")
+##       l = word[1].split(" ")
+##       if l[1] == "гл":
+##           if len(l) > 3:
+##               if l[3] == "перех":
+##                   print(line)
+
+##with open("freq.txt", "r", encoding ="utf-8") as file:
+##    for line in file:
+##        word = line.split("|")
+##        l = word[1].split(" ")
+##        if l[1] == "част":
+##          #  print(word[0].join(word[0])) - это разные варианты
+####            a = []
+####            n = input()
+####            for i in range(n):
+####                new = input()
+####                a.append(new)
+####            print(a)
+##          print(" ")
+##          print(word[0])
+##          print(" ")
+##with open("freq.txt", "r", encoding ="utf-8") as file:
+##    for line in file:
+##        word = line.split("|")
+##        l = word[1].split(" ")
+##        if l[1] == "част" and len(word[2]):
+##                #a = word[2].split(" \n")
+##                #a = word[2].replace("\n", "")
+##            print(word[2])
+
+w1 = []
+w = []
+with open("freq.txt", encoding="utf-8") as f:
+    for line in f:
+        word = line.split("|")
+        l = word[1].split(" ")
+        if l[1] == "част":
+            w1.append(word[0])
+            w = w + float(word[2])
+            print(w1)
+for i in range(w1):
+    print(w1[i]+',')
+    print("summa", t)
+##    w = w + float(word[2])
+##    print(w)
+
+
