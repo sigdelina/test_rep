@@ -8,7 +8,7 @@ def read_text():
     return text
 
 def main():
-    text = read_text()
+    text = read_text()оалвдоыдлаовылдаовыдлаофвлдоафдовалофд
     print(text)
     
 main()
