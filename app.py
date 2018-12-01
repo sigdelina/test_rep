@@ -19,7 +19,8 @@ create_File()
 def general():
     urls = {'Главная страница с опросом': url_for('general'),
             'Все ответов в формате json': url_for('jsonel'),
-            'Статистика': url_for('stat')}
+            'Статистика': url_for('stat'),
+            'Поиск': url_for('searching')}
     if request.args:
         name = request.args['name']
         age = request.args['age']
@@ -49,9 +50,25 @@ def jsonel():
                  'quest_2': line[7],
                  "quest_3": line[8].replace('\n', '')}
             fin.append(d)
-    json_string = json.dumps(fin[1:], ensure_ascii=False)
-    json_obj_in_html = json2html.convert(json={"data": json_string})
-    return render_template('json.html', json_obj_in_html=json_obj_in_html)
+    json_string = json.dumps(fin[1:], ensure_ascii=False, indent=4)
+    json_date = json.loads(json_string)
+    with open('json_info.json', 'w', encoding='utf-8') as f:
+        json.dump(json_date, f, ensure_ascii=False, indent=4)
+    #final = json2html.convert(json={"data": json_date})
+    #json_obj_in_html = json2html.convert(json= json_string)
+    return render_template('json.html', json_date=json_date)
+    #return jsonify(json_date)
+
+@app.route('/search')
+def searching():
+   # urls = {'Главная страница с опросом': url_for('general'),
+   #         'Все ответов в формате json': url_for('jsonel'),
+   #         'Статистика': url_for('stat')}
+    if request.args:
+        studying = request.args['studying']
+        word = request.args['word']
+        return render_template('resulting.html',studying=studying, word=word)
+    return render_template('items search.html')
 
 @app.route('/stats')
 def stat():
